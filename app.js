@@ -5,6 +5,15 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+//Keep mongoose above routes
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/workout');
+mongoose.connection.on('error',function(err){
+  console.error('MongoDB connection error: ' + err);
+  process.exit(-1);
+});
+require('./models/Exercise');
+
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
