@@ -1,5 +1,8 @@
 (function(){
   var app = angular.module('meanWorkout',['ui.router']);
+
+  //TODO:0 Setup State Routing
+
 /*
   app.config([
     '$stateProvider','$urlRouterProvider',
