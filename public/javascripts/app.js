@@ -1,23 +1,23 @@
+/*
+Resources
+[Proper routing with ui-router](http://stackoverflow.com/questions/27107691/how-should-i-create-the-path-of-templateurl-property-in-angular-ui-router)
+*/
 (function(){
   var app = angular.module('meanWorkout',['ui.router']);
 
-  //TODO:0 Setup State Routing
-
-/*
   app.config([
     '$stateProvider','$urlRouterProvider',
     function($stateProvider,$urlRouterProvider){
       $stateProvider
       .state('home',{
         url: '/home',
-        templateUrl: '',
+        templateUrl: '../views/home.html',
         controller: 'MainCtrl'
-      })
-      .state();
+      });
       $urlRouterProvider.otherwise('home');
     }
   ]);
-*/
+
   app.controller('MainCtrl',[
     '$scope', 'exercises',
     function($scope,exercises){
