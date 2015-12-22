@@ -6,7 +6,9 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "@salesforce-ux/design-system": "^0.12.1",
     "angular": "^1.4.8",
+    "angular-bootstrap-npm": "^0.14.3",
     "angular-ui-router": "^0.2.15",
     "body-parser": "~1.13.2",
     "bootstrap": "^3.3.6",
