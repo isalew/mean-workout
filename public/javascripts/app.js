@@ -13,6 +13,11 @@ Resources
         url: '/home',
         templateUrl: '../views/home.html',
         controller: 'MainCtrl'
+      }).
+      state('exercises',{
+        url: '/exercises',
+        templateUrl: '../views/exercises.html',
+        controller: 'MainCtrl'
       });
       $urlRouterProvider.otherwise('home');
     }
@@ -59,6 +64,15 @@ Resources
     }
 
   ]);
+/*
+  app.pcontroller('ExerciseCtrl',[
+    '$scope','$stateParams','exercises',
+    function($scope,$stateParams,exercises){
+
+    }
+  ]);
+*/
+
 
   app.factory('exercises',[function(){
     //Service Body
