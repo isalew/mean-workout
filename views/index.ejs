@@ -62,14 +62,38 @@
       <div class="row">
           <h1 class="page-header">Exercises
             <div class="btn-group pull-right" role="group" aria-label="...">
-              <button type="button" class="btn btn-default" ng-click="addExercise()">
+              <button type="button" class="btn btn-default" ng-click="showForm()">
                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                 New Exercise
               </button>
             </div>
           </h1>
       </div>
-      <!-- Exercise List -->
+      <!-- Form -->
+      <div class="row" ng-show="isFormVisible" class="ng-hide">
+        <form ng-submit="addExercise()">
+          <div class="form-group">
+            <label for="exerciseName">Name</label>
+            <input type="text" class="form-control" id="exerciseName" placeholder="Name" ng-model="name">
+          </div>
+          <div class="form-group">
+            <label for="exerciseDescription">Description</label>
+            <textarea class="form-control" rows="3" id="exerciseDescription" placeholder="Description" ng-model="description"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="exerciseCategory">Category</label>
+            <select class="form-control" id="exerciseCategory" ng-model="category">
+              <option>Back</option>
+              <option>Core</option>
+              <option>Shoulders</option>
+              <option>Arms</option>
+              <option>Legs</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+      </div>
+      <!-- List -->
       <div class="row">
         <table class="table table-striped">
           <thead>

@@ -18,8 +18,11 @@
   app.controller('MainCtrl',[
     '$scope',
     function($scope){
+
       $scope.title = 'MEAN Workout';
+
       $scope.keys = ['name','description','category'];
+
       $scope.exercises = [
         {
           "_id": "566de3316ed7e3a266ee5b65",
@@ -49,18 +52,33 @@
           "__v": 0
         }
       ];
+
       $scope.addExercise = function(){
+
+        if(!$scope.name || !$scope.description || !$scope.category){
+          return;
+        }
+
         $scope.exercises.push({
-          "_id": "566de3316ed7e3a266ee5b65",
-          "updated_at": "2015-12-13T21:29:21.000Z",
-          "created_at": "2015-12-13T21:29:21.000Z",
-          "name": "New Exercises",
-          "description": "A Basic Exercise",
-          "category": "Full",
+          "name": $scope.name,
+          "description": $scope.description,
+          "category": $scope.category,
           "__v": 0
         });
+
+        $scope.hideForm();
+
       };
+
+      $scope.showForm = function(){
+        $scope.isFormVisible = true;
+      };
+      $scope.hideForm = function(){
+        $scope.isFormVisible = false;
+      };
+
     }
+
   ]);
 
 })();
