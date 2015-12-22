@@ -16,14 +16,51 @@
   ]);
 */
   app.controller('MainCtrl',[
-    '$scope',
-    function($scope){
+    '$scope', 'exercises',
+    function($scope,exercises){
 
       $scope.title = 'MEAN Workout';
 
       $scope.keys = ['name','description','category'];
 
-      $scope.exercises = [
+      $scope.exercises = exercises.exercises;
+
+      $scope.addExercise = function(){
+
+        if(!$scope.name || !$scope.description || !$scope.category){
+          return;
+        }
+
+        $scope.exercises.push({
+          "name": $scope.name,
+          "description": $scope.description,
+          "category": $scope.category,
+          "__v": 0
+        });
+
+        $scope.name = '';
+        $scope.description = '';
+        $scope.category = '';
+
+        $scope.hideForm();
+
+      };
+
+      $scope.showForm = function(){
+        $scope.isFormVisible = true;
+      };
+      $scope.hideForm = function(){
+        $scope.isFormVisible = false;
+      };
+
+    }
+
+  ]);
+
+  app.factory('exercises',[function(){
+    //Service Body
+    var o = {
+      exercises: [
         {
           "_id": "566de3316ed7e3a266ee5b65",
           "updated_at": "2015-12-13T21:29:21.000Z",
@@ -51,34 +88,9 @@
           "category": "Back",
           "__v": 0
         }
-      ];
-
-      $scope.addExercise = function(){
-
-        if(!$scope.name || !$scope.description || !$scope.category){
-          return;
-        }
-
-        $scope.exercises.push({
-          "name": $scope.name,
-          "description": $scope.description,
-          "category": $scope.category,
-          "__v": 0
-        });
-
-        $scope.hideForm();
-
-      };
-
-      $scope.showForm = function(){
-        $scope.isFormVisible = true;
-      };
-      $scope.hideForm = function(){
-        $scope.isFormVisible = false;
-      };
-
-    }
-
-  ]);
+      ]
+    };
+    return o;
+  }]);
 
 })();
