@@ -11,27 +11,64 @@ Resources
       $stateProvider
       .state('home',{
         url: '/home',
-        templateUrl: '../views/home.html',
-        controller: 'MainCtrl'
+        templateUrl: '../partials/home.html'
       }).
       state('exercises',{
         url: '/exercises',
-        templateUrl: '../views/exercises.html',
-        controller: 'MainCtrl'
+        templateUrl: '../partials/exercises.html',
+        controller: 'ExerciseCtrl',
+        resolve: {
+          exercisePromise: ['exercises',function(exercises){
+            return exercises.getAll();
+          }]
+        }
+      }).
+      state('workouts',{
+        url: '/workouts',
+        templateUrl: '../partials/workouts.html',
+        controller: 'WorkoutCtrl'
+      }).
+      state('sessions',{
+        url: '/sessions',
+        templateUrl: '../partials/sessions.html',
+        controller: 'SessionCtrl'
       });
-      $urlRouterProvider.otherwise('home');
+      $urlRouterProvider.otherwise('sessions');
     }
   ]);
 
-  app.controller('MainCtrl',[
+  app.directive('navBar',function(){
+
+    var controller = ['$scope',function($scope){
+      $scope.title = 'MEAN Workout';
+    }];
+
+    return {
+      //configuration object defining how directive will work
+      restrict: 'E', //Type of Directive (E for Element)
+      templateUrl: '../partials/menu.html',
+      controller: controller,
+      controllerAs: 'navBar'
+    };
+
+  });
+
+  app.controller('ExerciseCtrl',[
     '$scope', 'exercises',
     function($scope,exercises){
 
-      $scope.title = 'MEAN Workout';
-
-      $scope.keys = ['name','description','category'];
-
       $scope.exercises = exercises.exercises;
+      $scope.keys = ['name','category','description','actions'];
+      // $scope.keys = Object.keys($scope.exercises[0]); // Pulls all key values
+      $scope.formName = 'New Exercise';
+
+      $scope.toggleForm = function(){
+        if($scope.isFormVisible){
+          $scope.isFormVisible = false;
+        } else {
+          $scope.isFormVisible = true;
+        }
+      };
 
       $scope.addExercise = function(){
 
@@ -39,41 +76,85 @@ Resources
           return;
         }
 
-        $scope.exercises.push({
-          "name": $scope.name,
-          "description": $scope.description,
-          "category": $scope.category,
-          "__v": 0
+        exercises.create({
+          name: $scope.name,
+          description: $scope.description,
+          category: $scope.category
         });
 
         $scope.name = '';
         $scope.description = '';
         $scope.category = '';
 
-        $scope.hideForm();
+        $scope.toggleForm();
 
       };
-
-      $scope.showForm = function(){
-        $scope.isFormVisible = true;
-      };
-      $scope.hideForm = function(){
-        $scope.isFormVisible = false;
-      };
-
-    }
-
-  ]);
 /*
-  app.pcontroller('ExerciseCtrl',[
-    '$scope','$stateParams','exercises',
-    function($scope,$stateParams,exercises){
+      //TODO: Add edit function & form to exercises
+      $scope.editExercise = function(exercise){
+
+        $scope.formName = 'Edit Exercise';
+
+        $scope.name = exercise.name;
+        $scope.description = exercise.description;
+        $scope.category = exercise.category;
+
+        $scope.toggleForm();
+
+      };
+
+      $scope.saveExercise = function(exercise){
+        exercises.save(exercise._id);
+      }
+*/
+      $scope.deleteExercise = function(id){
+        exercises.delete(id);
+      }
 
     }
+
   ]);
-*/
 
 
+  app.factory('exercises',['$http',function($http){
+    var o = {
+      exercises: []
+    };
+    o.getAll = function(){
+      return $http.get('/api/exercises').success(function(data){
+        angular.copy(data, o.exercises);
+      });
+    };
+    o.get = function(id){
+      return $http.get('/api/exercises/' + id).then(function(res){
+        return res.data;
+      });
+    };
+    o.create = function(exercise){
+      return $http.post('/api/exercises',exercise).success(function(data){
+        o.exercises.push(data);
+      });
+    };
+    o.update = function(exercise){
+      return $http.put('/api/exercises/' + exercise._id, null).success(function(data){
+        exercise = exercise;
+      });
+    }
+    o.delete = function(id){
+      $http.delete('/api/exercises/' + id).then(function(res){
+        for (var i = 0; i < o.exercises.length; i++){
+          if (o.exercises[i]._id === id) {
+             o.exercises.splice(i,1);
+             break;
+          }
+        }
+        return res.data;
+      });
+
+    }
+    return o;
+  }]);
+/*
   app.factory('exercises',[function(){
     //Service Body
     var o = {
@@ -109,5 +190,5 @@ Resources
     };
     return o;
   }]);
-
+*/
 })();

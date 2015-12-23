@@ -3,6 +3,10 @@ var router = express.Router();
 
 var mongoose = require('mongoose');
 var Exercise = mongoose.model('Exercise');
+//TODO: Add Workout Dependency
+//var Workout = mongoose.model('Workout');
+
+//TODO: Add Workout Routes
 
 /* GET home page. */
 router.get('/', function(req, res, next) {

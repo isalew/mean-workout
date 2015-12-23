@@ -13,6 +13,8 @@ mongoose.connection.on('error',function(err){
   process.exit(-1);
 });
 require('./models/Exercise');
+//TODO: Add Workout Dependency
+//require('./models/Workout');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
