@@ -20,12 +20,13 @@ cd <project-folder>
 npm install
 ```
 
-Start Mongo
-```
-mongod
-```
-
-Run server ( Opens on localhost:3000 )
+Run Application ( Opens on localhost:3000 )
 ```
 npm start
+```
+
+Stop Application
+```
+Ctrl + C
+npm stop
 ```

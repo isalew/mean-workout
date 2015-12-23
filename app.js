@@ -1,25 +1,38 @@
-var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
+<!-- server.js -->
 
-//Keep mongoose above routes
-var mongoose = require('mongoose');
+// TODO: Setup automatic start/stop of Mongo server
+// http://antrikshy.com/blog/run-mongodb-automatically-nodejs-project/
+
+// set up ====================================================================================
+var express       = require('express');
+var app           = express();
+var mongoose      = require('mongoose');
+var path          = require('path');
+var favicon       = require('serve-favicon');
+var logger        = require('morgan');
+var cookieParser  = require('cookie-parser');
+var bodyParser    = require('body-parser');
+
+// configuration =============================================================================
+
 mongoose.connect('mongodb://localhost/workout');
+
 mongoose.connection.on('error',function(err){
   console.error('MongoDB connection error: ' + err);
   process.exit(-1);
 });
+
+// models ====================================================================================
+
 require('./models/Exercise');
 //TODO: Add Workout Dependency
 //require('./models/Workout');
 
+// routes ====================================================================================
+
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
-var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -66,6 +79,5 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
-
 
 module.exports = app;
