@@ -26,7 +26,12 @@ Resources
       state('workouts',{
         url: '/workouts',
         templateUrl: '../partials/workouts.html',
-        controller: 'WorkoutCtrl'
+        controller: 'WorkoutCtrl',
+        resolve: {
+          workoutPromise: ['workouts',function(workouts){
+            return workouts.getAll();
+          }]
+        }
       }).
       state('sessions',{
         url: '/sessions',
@@ -52,6 +57,15 @@ Resources
     };
 
   });
+
+  app.controller('WorkoutCtrl',[
+    '$scope','workouts',
+    function($scope,workouts){
+      $scope.workouts = workouts.workouts;
+      $scope.keys = ['name','description'];
+      $scope.exerciseKeys = ['exercise','description','category'];
+    }
+  ]);
 
   app.controller('ExerciseCtrl',[
     '$scope', 'exercises',
@@ -115,10 +129,39 @@ Resources
 
   ]);
 
+  app.factory('workouts',['$http',function($http){
+    var o = {
+      workouts: []
+    };
+    o.getAll = function(){
+      return $http.get('/api/workouts').success(function(data){
+        angular.copy(data, o.workouts);
+      });
+    };
+    o.create = function(workout){
+      return $http.post('/api/workouts',workout).success(function(data){
+        o.workouts.push(data);
+      });
+    }
+    return o;
+  }]);
 
   app.factory('exercises',['$http',function($http){
     var o = {
-      exercises: []
+      exercises: [
+        /*
+          //Optionally bypass database with test data
+          {
+            "_id": "566de3316ed7e3a266ee5b65",
+            "updated_at": "2015-12-13T21:29:21.000Z",
+            "created_at": "2015-12-13T21:29:21.000Z",
+            "name": "Push-Up",
+            "description": "A Basic Push-Up",
+            "category": "Core",
+            "__v": 0
+          }
+        */
+      ]
     };
     o.getAll = function(){
       return $http.get('/api/exercises').success(function(data){
@@ -154,41 +197,5 @@ Resources
     }
     return o;
   }]);
-/*
-  app.factory('exercises',[function(){
-    //Service Body
-    var o = {
-      exercises: [
-        {
-          "_id": "566de3316ed7e3a266ee5b65",
-          "updated_at": "2015-12-13T21:29:21.000Z",
-          "created_at": "2015-12-13T21:29:21.000Z",
-          "name": "Push-Up",
-          "description": "A Basic Push-Up",
-          "category": "Core",
-          "__v": 0
-        },
-        {
-          "_id": "566de3316ed7e3a266ee5b65",
-          "updated_at": "2015-12-13T21:29:21.000Z",
-          "created_at": "2015-12-13T21:29:21.000Z",
-          "name": "Crunch",
-          "description": "A Basic Crunch",
-          "category": "Core",
-          "__v": 0
-        },
-        {
-          "_id": "566de3316ed7e3a266ee5b65",
-          "updated_at": "2015-12-13T21:29:21.000Z",
-          "created_at": "2015-12-13T21:29:21.000Z",
-          "name": "Pull-Up",
-          "description": "A Basic Pull-Up",
-          "category": "Back",
-          "__v": 0
-        }
-      ]
-    };
-    return o;
-  }]);
-*/
+
 })();

@@ -25,11 +25,16 @@ router.param('workout',function(req,res,next,id){
 
 router.get('/', function(req,res,next){
 
+  Workout.find().populate('exercises').exec(function(err,workouts){
+    if(err){return next(err);}
+    res.json(workouts);
+  });
+/*
   Workout.find(function(err,workouts){
     if(err){return next(err);}
     res.json(workouts);
   });
-
+*/
 });
 
 router.post('/',function(req,res,next){

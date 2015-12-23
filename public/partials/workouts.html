@@ -2,3 +2,27 @@
 <div class="row">
     <h1 class="page-header">Workouts</h1>
 </div>
+<div class="row">
+  <!-- Panel List -->
+  <div class="panel panel-default" ng-repeat="workout in workouts">
+    <div class="panel-heading">{{workout.name}}</div>
+    <div class="panel-body">
+      <p>{{workout.description}}</p>
+    </div>
+    <!-- Panel Table -->
+    <table class="table">
+      <thead>
+        <tr>
+          <th ng-repeat="key in exerciseKeys">{{key | uppercase}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="exercise in workout.exercises">
+          <td>{{exercise.name}}</td>
+          <td>{{exercise.description}}</td>
+          <td>{{exercise.category}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
