@@ -9,20 +9,23 @@ Set fitness goals, design workouts, log exercises, and stay fit with MEAN Workou
 
 #### Installation
 
-1. Clone the Git Repository
+Clone the Git Repository
 ```
 git clone https://github.com/isalew/mean-workout.git
 ```
-- Install package dependencies
+
+Install package dependencies
 ```
 cd <project-folder>
 npm install
 ```
-- Start Mongo
+
+Start Mongo
 ```
 mongod
 ```
-- Run server ( Opens on localhost:3000 )
+
+Run server ( Opens on localhost:3000 )
 ```
 npm start
 ```
