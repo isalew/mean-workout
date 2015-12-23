@@ -90,7 +90,7 @@ Resources
 
       };
 /*
-      //TODO: Add edit function & form to exercises
+      //TODO:50 Exercise: Add edit function & form to exercises
       $scope.editExercise = function(exercise){
 
         $scope.formName = 'Edit Exercise';

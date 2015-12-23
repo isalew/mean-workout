@@ -3,20 +3,21 @@ var router = express.Router();
 
 var mongoose = require('mongoose');
 var Exercise = mongoose.model('Exercise');
+var Workout = mongoose.model('Workout');
 
 router.use(function(req,res,next){
   console.log('Time:', Date.now());
   next();
 });
 
-router.param('exercise',function(req,res,next,id){
+router.param('workout',function(req,res,next,id){
 
-  var query = Exercise.findById(id);
+  var query = Workout.findById(id);
 
   query.exec(function(err,result){
     if(err){return next(err);}
-    if(!result){return next(new Error('can\'t find exercise'));}
-    req.exercise = result;
+    if(!result){return next(new Error('can\'t find workout'));}
+    req.workout = result;
     return next();
   });
 
@@ -24,24 +25,34 @@ router.param('exercise',function(req,res,next,id){
 
 router.get('/', function(req,res,next){
 
-  Exercise.find(function(err,exercises){
+  Workout.find(function(err,workouts){
     if(err){return next(err);}
-    res.json(exercises);
+    res.json(workouts);
   });
 
 });
 
 router.post('/',function(req,res,next){
 
-  var exercise = new Exercise(req.body);
+  console.log(req.body);
 
-  exercise.save(function(err,exercise){
+  var workout = new Workout(req.body);
+
+  workout.save(function(err,workout){
     if(err){return next(err);}
-    res.json(exercise);
+    res.json(workout);
   });
 
 });
-
+/*
+router.put('/:workout/exercise',function(req,res,next){
+  req.workout.addExercise(function(err, workout){
+    if(err){return next(err);}
+    res.json(workout);
+  });
+});
+*/
+/*
 router.get('/:exercise',function(req,res,next){
 
   res.json(req.exercise);
@@ -69,5 +80,5 @@ router.delete('/:exercise',function(req,res,next){
   });
 
 });
-
+*/
 module.exports = router;

@@ -33,7 +33,7 @@
     "postinstall": "bower install",
 
     "prestart": "npm install",
-    "start": "node ./bin/www",
+    "start": "node ./bin/www"
 
   }
 }

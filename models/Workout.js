@@ -1,6 +1,3 @@
-// TODO: Add Workout Method - Add Exercise
-// TODO: Add Workout Schedule in Sessions
-
 var mongoose = require('mongoose');
 
 var WorkoutSchema = new mongoose.Schema({
@@ -14,5 +11,16 @@ var WorkoutSchema = new mongoose.Schema({
     updatedAt: 'updated_at'
   }
 });
+
+// TODO:20 Workout: Workout Schedule in Sessions
+
+/*
+// TODO:0 Workout: Add Exercise Method
+WorkoutSchema.methods.addExercise = function(cb,id){
+  //TODO:10 Workout: Validate method inputs
+  this.exercises.push(id);
+  this.save(cb);
+};
+*/
 
 mongoose.model('Workout',WorkoutSchema);

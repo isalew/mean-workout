@@ -1,6 +1,6 @@
 <!-- server.js -->
 
-// TODO: Setup automatic start/stop of Mongo server
+// TODO:40 App: Setup automatic start/stop of Mongo server
 // http://antrikshy.com/blog/run-mongodb-automatically-nodejs-project/
 
 // set up ====================================================================================
@@ -25,14 +25,14 @@ mongoose.connection.on('error',function(err){
 // models ====================================================================================
 
 require('./models/Exercise');
-//TODO: Add Workout Dependency
-//require('./models/Workout');
+require('./models/Workout');
 
 // routes ====================================================================================
 
 var routes = require('./routes/index');
+var exercises = require('./routes/exercises');
+var workouts = require('./routes/workouts');
 var users = require('./routes/users');
-
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -47,6 +47,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
+app.use('/api/exercises',exercises);
+app.use('/api/workouts',workouts);
 app.use('/users', users);
 
 // catch 404 and forward to error handler

@@ -4,11 +4,11 @@ var ExerciseSchema = new mongoose.Schema({
     name: {type: String, unique: true, required: true}
   , description: {type: String}
   , category: {type: String}
-  //TODO:10 Add exercise image schema
+  //TODO:70 Exercise: Add images
   //, images: []
-  //TODO:20 Add exercise muscle group tag schema
+  //TODO:80 Exercise: Add muscle group tags
   //, muscle_groups: []
-  //TODO:30 Add exercise workout relationship schema
+  //TODO:60 Exercise: Add workout relationship
   //, workouts: [] (Query or Relate?)
 },
 {
