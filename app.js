@@ -50,6 +50,7 @@ app.use('/', routes);
 app.use('/api/exercises',exercises);
 app.use('/api/workouts',workouts);
 app.use('/users', users);
+app.use('/bower_components',express.static(__dirname + '/bower_components'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

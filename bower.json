@@ -13,7 +13,7 @@
   "dependencies": {
     "jquery": "~2.1.4",
     "bootstrap": "~3.3.6",
-    "angular": "~1.4.8",
+    "angular": "~1.4.7",
     "salesforce-lightning-design-system": "~0.12.1",
     "angular-bootstrap": "~0.14.3",
     "angular-ui-router": "~0.2.15"

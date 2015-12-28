@@ -1,10 +1,10 @@
 <!-- Page Name -->
 <div class="row">
-    <h1 class="page-header">Exercises
+    <h1 class="page-header">{{objectName}}s
       <div class="btn-group pull-right" role="group" aria-label="...">
-        <button type="button" class="btn btn-default" ng-click="toggleForm()">
+        <button type="button" class="btn btn-primary" ng-click="toggleForm()">
           <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-          New Exercise
+          New {{objectName}}
         </button>
       </div>
     </h1>
@@ -36,13 +36,17 @@
           </select>
         </div>
         <div class="btn-group" role="group" aria-label="...">
-          <button type="submit" class="btn btn-default">Submit</button>
-          <button type="button" class="btn btn-default" ng-click="toggleForm()">Cancel</button>
+          <button type="submit" class="btn btn-success">Submit</button>
+          <button type="button" class="btn btn-danger" ng-click="toggleForm()">Cancel</button>
         </div>
       </form>
     </div>
   </div>
-
+</div>
+<!-- Search -->
+<div class="row">
+  <input type="text" ng-model="query" class="form-control" placeholder="Search" aria-describedby="sizing-addon1">
+</div>
 </div>
 <!-- List -->
 <div class="row">
@@ -53,14 +57,14 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="exercise in exercises">
+      <tr ng-repeat="exercise in exercises | filter:query">
         <td>{{exercise.name}}</td>
         <td>{{exercise.category}}</td>
         <td>{{exercise.description}}</td>
         <td>
           <div class="btn-group" role="group" aria-label="...">
-            <button type="button" class="btn btn-default" ng-click="editExercise(exercise)">Edit</button>
-            <button type="button" class="btn btn-default" ng-click="deleteExercise(exercise._id)">Delete</button>
+            <button type="button" class="btn btn-success btn-sm" ng-click="editExercise(exercise)">Edit</button>
+            <button type="button" class="btn btn-danger btn-sm" ng-click="deleteExercise(exercise._id)">Delete</button>
           </div>
         </td>
       </tr>

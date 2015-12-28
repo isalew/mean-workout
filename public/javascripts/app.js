@@ -3,7 +3,7 @@ Resources
 [Proper routing with ui-router](http://stackoverflow.com/questions/27107691/how-should-i-create-the-path-of-templateurl-property-in-angular-ui-router)
 */
 (function(){
-  var app = angular.module('meanWorkout',['ui.router']);
+  var app = angular.module('meanWorkout',['ui.bootstrap','ui.router']);
 
   app.config([
     '$stateProvider','$urlRouterProvider',
@@ -30,6 +30,9 @@ Resources
         resolve: {
           workoutPromise: ['workouts',function(workouts){
             return workouts.getAll();
+          }],
+          exercisePromise: ['exercises',function(exercises){
+            return exercises.getAll();
           }]
         }
       }).
@@ -59,18 +62,37 @@ Resources
   });
 
   app.controller('WorkoutCtrl',[
-    '$scope','workouts',
-    function($scope,workouts){
+    '$scope','$http','workouts','exercises',
+    function($scope,$http,workouts,exercises){
+      $scope.objectName = 'Workout';
       $scope.workouts = workouts.workouts;
       $scope.keys = ['name','description'];
       $scope.exerciseKeys = ['exercise','description','category'];
+      $scope.exercises = exercises.exercises;
+      //$scope.exercises = ['pull-up','push-up','crunch'];
+      $scope.selected = undefined;
+/*
+      // Any function returning a promise object can be used to load values asynchronously
+      $scope.getLocation = function(val) {
+        return $http.get('//maps.googleapis.com/maps/api/geocode/json', {
+          params: {
+            address: val,
+            sensor: false
+          }
+        }).then(function(response){
+          return response.data.results.map(function(item){
+            return item.formatted_address;
+          });
+        });
+      };
+*/
     }
   ]);
-
   app.controller('ExerciseCtrl',[
     '$scope', 'exercises',
     function($scope,exercises){
 
+      $scope.objectName = 'Exercise';
       $scope.exercises = exercises.exercises;
       $scope.keys = ['name','category','description','actions'];
       // $scope.keys = Object.keys($scope.exercises[0]); // Pulls all key values
