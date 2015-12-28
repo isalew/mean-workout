@@ -50,6 +50,20 @@ router.post('/',function(req,res,next){
 
 });
 /*
+//TODO: Workouts: Create API to add Exercise
+router.put('/:workout',function(req,res,next){
+
+  var query = {_id:$scope.selectedWorkout._id};
+  var update = $scope.selectedWorkout;
+
+  workouts.update(query,update,function(err,res){
+    if(err) return handleError(err);
+    console.log('The response from mongo was ', raw);
+  });
+
+});
+*/
+/*
 router.put('/:workout/exercise',function(req,res,next){
   req.workout.addExercise(function(err, workout){
     if(err){return next(err);}

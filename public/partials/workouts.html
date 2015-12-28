@@ -1,25 +1,30 @@
 <!-- Page Name -->
 <div class="row">
-    <h1 class="page-header">{{objectName}}s
-      <div class="btn-group pull-right" role="group" aria-label="...">
+  <div class='page-header'>
+    <div class='btn-toolbar pull-right'>
+      <div class="btn-group" role="group" aria-label="...">
         <button type="button" class="btn btn-primary" ng-click="toggleForm()">
           <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
           New {{objectName}}
         </button>
       </div>
-    </h1>
+    </div>
+    <h1>{{objectName}}s</h1>
+  </div>
 </div>
+<!-- Panel List -->
 <div class="row">
-  <!-- Panel List -->
   <div class="panel panel-default" ng-repeat="workout in workouts">
-    <div class="panel-heading">{{workout.name}}</div>
+    <div class="panel-heading">
+      <h3 class="panel-title">{{workout.name}}</h3>
+    </div>
     <div class="panel-body">
       <div class="col-xs-8 col-md-8">
         <p>{{workout.description}}</p>
       </div>
       <div class="col-xs-4 col-md-4">
         <div class="btn-group pull-right" role="group" aria-label="...">
-          <button type="button" class="btn btn-primary" ng-click="toggleForm()">
+          <button type="button" class="btn btn-primary" ng-click="addExercise(workout)">
             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
             Add Exercise
           </button>
@@ -27,14 +32,15 @@
       </div>
     </div>
     <!-- Form -->
-    <div class="panel-body">
+    <div class="panel-body" ng-show="isFormVisible && selectedWorkout == workout">
       <form> <!-- ng-submit="addWorkoutExercise({{workout._id}})" -->
         <div class="form-group">
           <label for="exerciseSearch">Search</label>
           <input  type="text"
-                  ng-model="selected"
+                  ng-model="selectedExercise"
                   placeholder="Enter an exercise"
                   uib-typeahead="exercise as exercise.name for exercise in exercises | filter:$viewValue | limitTo:8"
+                  typeahead-on-select="onSelect($item,$model,$label)"
                   typeahead-loading="loadingExercises"
                   typeahead-no-results="noResults"
                   id="exerciseSearch"
@@ -46,7 +52,6 @@
                     <i class="glyphicon glyphicon-remove"></i> No Results Found
                   </div>
         </div>
-        <pre>Model: {{selected | json}}</pre>
         <div class="btn-group" role="group" aria-label="...">
           <button type="submit" class="btn btn-success">Submit</button>
           <button type="button" class="btn btn-danger" ng-click="toggleForm()">Cancel</button>

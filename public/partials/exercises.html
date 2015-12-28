@@ -1,13 +1,16 @@
 <!-- Page Name -->
 <div class="row">
-    <h1 class="page-header">{{objectName}}s
-      <div class="btn-group pull-right" role="group" aria-label="...">
+  <div class='page-header'>
+    <div class='btn-toolbar pull-right'>
+      <div class="btn-group" role="group" aria-label="...">
         <button type="button" class="btn btn-primary" ng-click="toggleForm()">
           <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
           New {{objectName}}
         </button>
       </div>
-    </h1>
+    </div>
+    <h1>{{objectName}}s</h1>
+  </div>
 </div>
 <!-- Form -->
 <div class="row" ng-show="isFormVisible" class="ng-hide">
@@ -19,7 +22,7 @@
       <form ng-submit="addExercise()">
         <div class="form-group">
           <label for="exerciseName">Name</label>
-          <input type="text" class="form-control" id="exerciseName" placeholder="Name" ng-model="name">
+          <input type="text" class="form-control" id="exerciseName" placeholder="Name" ng-model="name" autocomplete="off">
         </div>
         <div class="form-group">
           <label for="exerciseDescription">Description</label>
@@ -45,29 +48,38 @@
 </div>
 <!-- Search -->
 <div class="row">
-  <input type="text" ng-model="query" class="form-control" placeholder="Search" aria-describedby="sizing-addon1">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Search</h3>
+    </div>
+    <div class="panel-body">
+      <input type="text" ng-model="query" class="form-control" placeholder="Find an exercise" aria-describedby="sizing-addon1">
+    </div>
+  </div>
 </div>
 </div>
 <!-- List -->
 <div class="row">
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th ng-repeat="th in keys">{{th | uppercase}}</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr ng-repeat="exercise in exercises | filter:query">
-        <td>{{exercise.name}}</td>
-        <td>{{exercise.category}}</td>
-        <td>{{exercise.description}}</td>
-        <td>
-          <div class="btn-group" role="group" aria-label="...">
-            <button type="button" class="btn btn-success btn-sm" ng-click="editExercise(exercise)">Edit</button>
-            <button type="button" class="btn btn-danger btn-sm" ng-click="deleteExercise(exercise._id)">Delete</button>
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="panel panel-default">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th ng-repeat="th in keys">{{th | uppercase}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="exercise in exercises | filter:query">
+          <td>{{exercise.name}}</td>
+          <td>{{exercise.category}}</td>
+          <td>{{exercise.description}}</td>
+          <td>
+            <div class="btn-group" role="group" aria-label="...">
+              <button type="button" class="btn btn-success btn-sm" ng-click="editExercise(exercise)">Edit</button>
+              <button type="button" class="btn btn-danger btn-sm" ng-click="deleteExercise(exercise._id)">Delete</button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

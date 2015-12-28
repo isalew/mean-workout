@@ -16,6 +16,8 @@
     "angular": "~1.4.7",
     "salesforce-lightning-design-system": "~0.12.1",
     "angular-bootstrap": "~0.14.3",
-    "angular-ui-router": "~0.2.15"
+    "angular-ui-router": "~0.2.15",
+    "angular-ui-calendar": "~1.0.1",
+    "angular-timeline": "~1.6.1"
   }
 }

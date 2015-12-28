@@ -1,4 +1,33 @@
 <!-- Page Name -->
 <div class="row">
-    <h1 class="page-header">Sessions</h1>
+  <div class='page-header'>
+    <div class='btn-toolbar pull-right'>
+      <div class="btn-group" role="group" aria-label="...">
+        <button type="button" class="btn btn-primary" ng-click="changeView('agendaDay','sessions')">Day</button>
+        <button type="button" class="btn btn-primary" ng-click="changeView('agendaWeek','sessions')">Week</button>
+        <button type="button" class="btn btn-primary" ng-click="changeView('month','sessions')">Month</button>
+      </div>
+    </div>
+    <h1>Schedule</h1>
+  </div>
 </div>
+<div class="row">
+  <div class="alert-success calAlert" ng-show="alertMessage != undefined && alertMessage != ''">
+    <h4>{{alertMessage}}</h4>
+  </div>
+</div>
+<div class="row">
+  <div ui-calendar="uiConfig.calendar" calendar="sessions" class="span8 calendar" ng-model="eventSources"></div>
+</div>
+<!--
+<div class="row">
+  <ul class="unstyled">
+    <li ng-repeat="e in events | filter:currentDate">
+        <div class="alert alert-info">
+            <a class="close" ng-click="remove($index)"><i class="icon-remove"></i></a>
+            <b> {{e.title}}</b> - {{e.start | date:"MMM dd"}}
+        </div>
+    </li>
+  </ul>
+</div>
+-->
