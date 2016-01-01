@@ -183,7 +183,7 @@ Resources
         console.log('Exercise: ', $scope.selectedExercise);
         $scope.selectedWorkout.exercises.push($scope.selectedExercise);
         //Update Records
-        //TODO: Workouts: Create Update API to Add Exercise
+        //TODO: Workout: Create Update API to Add Exercise
         var query = {_id:$scope.selectedWorkout._id};
         var update = $scope.selectedWorkout;
 
@@ -194,6 +194,7 @@ Resources
           console.log('The response from mongo was ', raw);
         });
       };
+      
     }
   ]);
   app.controller('ExerciseCtrl',[
@@ -233,6 +234,7 @@ Resources
         $scope.toggleForm();
 
       };
+      //TODO: Exercise: Update exercise
 /*
       //TODO:50 Exercise: Add edit function & form to exercises
       $scope.editExercise = function(exercise){
