@@ -11,11 +11,11 @@ Resources
       $stateProvider
       .state('home',{
         url: '/home',
-        templateUrl: '../partials/home.html'
+        templateUrl: '../views/home.html'
       }).
       state('exercises',{
         url: '/exercises',
-        templateUrl: '../partials/exercises.html',
+        templateUrl: '../views/exercises.html',
         controller: 'ExerciseCtrl',
         resolve: {
           exercisePromise: ['exercises',function(exercises){
@@ -25,7 +25,7 @@ Resources
       }).
       state('workouts',{
         url: '/workouts',
-        templateUrl: '../partials/workouts.html',
+        templateUrl: '../views/workouts.html',
         controller: 'WorkoutCtrl',
         resolve: {
           workoutPromise: ['workouts',function(workouts){
@@ -38,7 +38,7 @@ Resources
       }).
       state('sessions',{
         url: '/sessions',
-        templateUrl: '../partials/sessions.html',
+        templateUrl: '../views/sessions.html',
         controller: 'SessionCtrl'
       });
       $urlRouterProvider.otherwise('sessions');
@@ -58,7 +58,7 @@ Resources
     return {
       //configuration object defining how directive will work
       restrict: 'E', //Type of Directive (E for Element)
-      templateUrl: '../partials/menu.html',
+      templateUrl: '../views/menu.html',
       controller: controller,
       controllerAs: 'navBar'
     };
