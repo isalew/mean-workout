@@ -24,15 +24,15 @@ mongoose.connection.on('error',function(err){
 
 // models ====================================================================================
 
-require('./models/Exercise');
-require('./models/Workout');
+require('./app/models/Exercise');
+require('./app/models/Workout');
 
 // routes ====================================================================================
 
-var routes = require('./routes/index');
-var exercises = require('./routes/exercises');
-var workouts = require('./routes/workouts');
-var users = require('./routes/users');
+var routes = require('./app/routes/index');
+var exercises = require('./app/routes/exercises');
+var workouts = require('./app/routes/workouts');
+var users = require('./app/routes/users');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
