@@ -6,7 +6,7 @@ angular.module('menuDirective',[])
     $scope.isCollapsed = true;
     $scope.toggleMenu = function(){
       $scope.isCollapsed = !$scope.isCollapsed;
-    }
+    };
   }];
 
   return {

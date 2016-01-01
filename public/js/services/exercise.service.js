@@ -35,7 +35,7 @@ angular.module('ExerciseService',[])
     return $http.put('/api/exercises/' + exercise._id, null).success(function(data){
       exercise = exercise;
     });
-  }
+  };
   o.delete = function(id){
     $http.delete('/api/exercises/' + id).then(function(res){
       for (var i = 0; i < o.exercises.length; i++){
@@ -46,7 +46,6 @@ angular.module('ExerciseService',[])
       }
       return res.data;
     });
-
-  }
+  };
   return o;
 }]);

@@ -12,11 +12,11 @@ angular.module('WorkoutService',[])
     return $http.post('/api/workouts',workout).success(function(data){
       o.workouts.push(data);
     });
-  }
+  };
   o.update = function(workout){
     return $http.put('/api/workouts/' + workout._id, null).success(function(data){
       workout = workout;
     });
-  }
+  };
   return o;
 }]);

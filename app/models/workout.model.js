@@ -1,9 +1,9 @@
 var mongoose = require('mongoose');
 
 var WorkoutSchema = new mongoose.Schema({
-    name: {type: String, unique: true, required: true}
-  , description: {type: String}
-  , exercises: [{type: mongoose.Schema.Types.ObjectId, ref:'Exercise'}]
+    name: {type: String, unique: true, required: true},
+    description: {type: String}, 
+    exercises: [{type: mongoose.Schema.Types.ObjectId, ref:'Exercise'}]
 },
 {
   timestamps:{

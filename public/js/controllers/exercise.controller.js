@@ -57,7 +57,7 @@ angular.module('ExerciseCtrl',[])
 */
     $scope.deleteExercise = function(id){
       exercises.delete(id);
-    }
+    };
 
   }
 

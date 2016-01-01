@@ -18,7 +18,7 @@ angular.module('WorkoutCtrl',[])
       $scope.selectedWorkout = workout;
       console.log('Workout: ', $scope.selectedWorkout);
       $scope.toggleForm();
-    }
+    };
 
     $scope.onSelect = function($item,$model,$label){
       $scope.$item = $item;

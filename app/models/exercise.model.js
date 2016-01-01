@@ -1,9 +1,9 @@
 var mongoose = require('mongoose');
 
 var ExerciseSchema = new mongoose.Schema({
-    name: {type: String, unique: true, required: true}
-  , description: {type: String}
-  , category: {type: String}
+    name: {type: String, unique: true, required: true},
+    description: {type: String},
+    category: {type: String}
   //TODO:70 Exercise: Add images
   //, images: []
   //TODO:80 Exercise: Add muscle group tags

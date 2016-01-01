@@ -1,5 +1,3 @@
-<!-- server.js -->
-
 // TODO:40 App: Setup automatic start/stop of Mongo server
 // http://antrikshy.com/blog/run-mongodb-automatically-nodejs-project/
 
