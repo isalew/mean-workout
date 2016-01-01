@@ -5,6 +5,7 @@ var mongoose = require('mongoose');
 var Exercise = mongoose.model('Exercise');
 // var Exercise = require('./app/models/Exercise'); // mongoose dependency is handled by file
 
+// Middleware to use for all requests
 router.use(function(req,res,next){
   console.log('Time:', Date.now());
   next();

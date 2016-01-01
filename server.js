@@ -3,7 +3,10 @@
 // TODO:40 App: Setup automatic start/stop of Mongo server
 // http://antrikshy.com/blog/run-mongodb-automatically-nodejs-project/
 
-// modules ====================================================================================
+// SETUP
+// =============================================================================
+
+// Call the packages we need
 var express       = require('express');
 var app           = express();
 var mongoose      = require('mongoose');
@@ -13,7 +16,8 @@ var logger        = require('morgan');
 var cookieParser  = require('cookie-parser');
 var bodyParser    = require('body-parser');
 
-// configuration =============================================================================
+// CONFIGURATION
+// =============================================================================
 
 // config files
 var db = require('./config/db');
@@ -34,34 +38,37 @@ app.use(bodyParser.urlencoded({ extended: false })); // parse application/x-www-
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public'))); // set the static files location
 
-// models ====================================================================================
-
-require('./app/models/exercise.model');
-require('./app/models/workout.model');
-
-// routes ====================================================================================
-
-/* client frontend routes */
-// to handle all angular requests
-var routes = require('./app/routes/index.routes');
-
-/* server routes */
-// to handle api calls, authentication routes
-var exercises = require('./app/routes/exercise.routes');
-var workouts = require('./app/routes/workout.routes');
-var users = require('./app/routes/user.routes');
-
-// view engine setup
-//app.set('views', path.join(__dirname, './public/views'));
+// view engine
 app.set('views', path.join(__dirname, 'views'));
 app.engine('html',require('ejs').renderFile);
 app.set('view engine', 'html');
 
+// MODELS
+// =============================================================================
+
+require('./app/models/exercise.model');
+require('./app/models/workout.model');
+
+// ROUTES
+// =============================================================================
+
+// client routes, to handle front-end angular requests
+var routes = require('./app/routes/index.routes');
+
+// server routes, to handle api calls, authentication requests
+var exercises = require('./app/routes/exercise.routes');
+var workouts = require('./app/routes/workout.routes');
+var users = require('./app/routes/user.routes');
+
+// register routes
 app.use('/', routes);
 app.use('/api/exercises',exercises);
 app.use('/api/workouts',workouts);
 app.use('/users', users);
 app.use('/bower_components',express.static(__dirname + '/bower_components'));
+
+// ERROR HANDLING
+// =============================================================================
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -69,8 +76,6 @@ app.use(function(req, res, next) {
   err.status = 404;
   next(err);
 });
-
-// error handlers
 
 // development error handler
 // will print stacktrace
@@ -94,5 +99,7 @@ app.use(function(err, req, res, next) {
   });
 });
 
-// expose app
+// EXPOSE THE APP
+// =============================================================================
+
 module.exports = app;
