@@ -52,8 +52,10 @@ var workouts = require('./app/routes/workouts');
 var users = require('./app/routes/users');
 
 // view engine setup
+//app.set('views', path.join(__dirname, './public/views'));
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
+app.engine('html',require('ejs').renderFile);
+app.set('view engine', 'html');
 
 app.use('/', routes);
 app.use('/api/exercises',exercises);
