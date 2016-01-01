@@ -23,4 +23,4 @@ WorkoutSchema.methods.addExercise = function(cb,id){
 };
 */
 
-mongoose.model('Workout',WorkoutSchema);
+module.exports = mongoose.model('Workout',WorkoutSchema);

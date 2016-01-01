@@ -3,6 +3,7 @@ var router = express.Router();
 
 var mongoose = require('mongoose');
 var Exercise = mongoose.model('Exercise');
+// var Exercise = require('./app/models/Exercise'); // mongoose dependency is handled by file
 
 router.use(function(req,res,next){
   console.log('Time:', Date.now());
