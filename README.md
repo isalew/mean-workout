@@ -1,32 +1,55 @@
-# mean-workout
-Set fitness goals, design workouts, log exercises, and stay fit with MEAN Workout. Built using the MEAN JS stack.
+mean-workout
+============
 
-#### Development
+Set fitness goals, design workouts, log exercises, and stay fit with **MEAN Workout**. Built on the [MEAN JS](http://meanjs.org/) stack. Inspired by the [Django](https://www.djangoproject.com/) app [wger fitness](https://github.com/rolandgeider/wger).
 
-[![Stories in Ready](https://badge.waffle.io/isalew/mean-workout.svg?label=ready&title=Ready)](http://waffle.io/isalew/mean-workout)
+Installation
+------------
 
-[![Stories in In Progress](https://badge.waffle.io/isalew/mean-workout.svg?label=In%20Progress&title=In%20Progress)](http://waffle.io/isalew/mean-workout)
+Download the tools
 
-#### Installation
+-	[Node.js](http://nodejs.org/download/)
+-	[MongoDB](https://docs.mongodb.org/manual/tutorial/install-mongodb-on-os-x/)
+-	[Git](http://git-scm.com/download/mac)
+-	[Bower](http://bower.io/#install-bower)
 
-Clone the Git Repository
+Download the repository
+
 ```
 git clone https://github.com/isalew/mean-workout.git
 ```
 
-Install package dependencies
+Run NPM to install dependencies
+
 ```
-cd <project-folder>
+cd mean-workout
 npm install
 ```
 
-Run Application ( Opens on localhost:3000 )
+In a separate terminal window, start a local instance of MongoDB
+
 ```
-npm start
+mongod
 ```
 
-Stop Application
+Start the app with grunt
+
 ```
-Ctrl + C
-npm stop
+grunt
 ```
+
+Open the app in your browser at `localhost:3000`
+
+```
+localhost:3000
+```
+
+API
+---
+
+Documentation for API Endpoints is available [in the `app/routes` directory](https://github.com/isalew/mean-workout/tree/server/app/routes).
+
+License
+-------
+
+The application is licenced under the Affero GNU General Public License 3 or later (AGPL 3+).
