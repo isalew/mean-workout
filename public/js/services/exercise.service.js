@@ -1,4 +1,4 @@
-angular.module('ExercisesService',[])
+angular.module('ExerciseService',[])
 .factory('exercises',['$http',function($http){
   var o = {
     exercises: [

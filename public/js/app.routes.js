@@ -5,11 +5,11 @@ angular.module('appRoutes',[])
     $stateProvider
     .state('home',{
       url: '/home',
-      templateUrl: '../views/home.html'
+      templateUrl: '../views/home.view.html'
     }).
     state('exercises',{
       url: '/exercises',
-      templateUrl: '../views/exercises.html',
+      templateUrl: '../views/exercise-list.view.html',
       controller: 'ExerciseCtrl',
       resolve: {
         exercisePromise: ['exercises',function(exercises){
@@ -19,7 +19,7 @@ angular.module('appRoutes',[])
     }).
     state('workouts',{
       url: '/workouts',
-      templateUrl: '../views/workouts.html',
+      templateUrl: '../views/workout-list.view.html',
       controller: 'WorkoutCtrl',
       resolve: {
         workoutPromise: ['workouts',function(workouts){
@@ -32,7 +32,7 @@ angular.module('appRoutes',[])
     }).
     state('sessions',{
       url: '/sessions',
-      templateUrl: '../views/sessions.html',
+      templateUrl: '../views/session-list.view.html',
       controller: 'SessionCtrl'
     });
     $urlRouterProvider.otherwise('sessions');

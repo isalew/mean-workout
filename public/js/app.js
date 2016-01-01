@@ -6,8 +6,8 @@ Resources
   var app = angular.module('meanWorkout',[
     'ui.bootstrap','ui.router','ui.calendar',
     'ExerciseCtrl','WorkoutCtrl','SessionCtrl',
-    'ExercisesService','WorkoutsService',
-    'navBarDirective',
+    'ExerciseService','WorkoutService',
+    'menuDirective',
     'appRoutes'
   ]);
 

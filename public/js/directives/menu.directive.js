@@ -1,5 +1,5 @@
-angular.module('navBarDirective',[])
-.directive('navBar',function(){
+angular.module('menuDirective',[])
+.directive('menu',function(){
 
   var controller = ['$scope',function($scope){
     $scope.title = 'MEAN Workout';
@@ -12,9 +12,9 @@ angular.module('navBarDirective',[])
   return {
     //configuration object defining how directive will work
     restrict: 'E', //Type of Directive (E for Element)
-    templateUrl: '../views/menu.html',
+    templateUrl: '../views/menu.view.html',
     controller: controller,
-    controllerAs: 'navBar'
+    controllerAs: 'menu'
   };
 
 });

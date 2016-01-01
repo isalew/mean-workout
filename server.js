@@ -36,20 +36,20 @@ app.use(express.static(path.join(__dirname, 'public'))); // set the static files
 
 // models ====================================================================================
 
-require('./app/models/Exercise');
-require('./app/models/Workout');
+require('./app/models/exercise.model');
+require('./app/models/workout.model');
 
 // routes ====================================================================================
 
 /* client frontend routes */
 // to handle all angular requests
-var routes = require('./app/routes/index');
+var routes = require('./app/routes/index.routes');
 
 /* server routes */
 // to handle api calls, authentication routes
-var exercises = require('./app/routes/exercises');
-var workouts = require('./app/routes/workouts');
-var users = require('./app/routes/users');
+var exercises = require('./app/routes/exercise.routes');
+var workouts = require('./app/routes/workout.routes');
+var users = require('./app/routes/user.routes');
 
 // view engine setup
 //app.set('views', path.join(__dirname, './public/views'));
